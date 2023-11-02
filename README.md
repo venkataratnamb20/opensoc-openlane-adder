@@ -1,3 +1,25 @@
+# VB Updates
+Building and running ghdl from docker
+```bash
+$ docker build . -t venkataratnamb20/ghdl:ubuntu-1.0
+```
+run ghdl with docker container
+```bash
+$ docker run -it --rm --name ghdl -v ${PWD}:'/usr/src/app/openlane-soc' venkataratnamb20/ghdl:ubuntu-1.0 ghdl -a ./src/vhdl/full_ad
+der.vhdl
+$ docker run -it --rm --name ghdl -v ${PWD}:'/usr/src/app/openlane-soc' venkataratnamb20/ghdl:ubuntu-1.0 ghdl -a ./src/vhdl/full_ad
+der_tb.vhdl
+```
+Elaborate
+```bash
+$ docker run -it --rm --name ghdl -v ${PWD}:'/usr/src/app/openlane-soc' venkataratnamb20/ghdl:ubuntu-1.0 ghdl -e full_adder
+$ docker run -it --rm --name ghdl -v ${PWD}:'/usr/src/app/openlane-soc' venkataratnamb20/ghdl:ubuntu-1.0 ghdl -e full_adder_tb
+```
+Generate waveform to test
+```bash
+$ docker run -it --rm --name ghdl -v ${PWD}:'/usr/src/app/openlane-soc' venkataratnamb20/ghdl:ubuntu-1.0 ghdl -r full_adder_tb --wave=./waves/full_adder_tb.ghw
+$ docker run -it --rm --name ghdl -v ${PWD}:'/usr/src/app/openlane-soc' venkataratnamb20/ghdl:ubuntu-1.0 ghdl -r full_adder_tb --wave=./waves/adder_tb.ghw
+```
 # adder
 Adder in VHDL to test the digital flow using ghdl + GTKwave (front-end) and openlane (back-end).
 
